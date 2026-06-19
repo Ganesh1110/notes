@@ -2814,32 +2814,54 @@ final rewarded = RewardedInterstitialAd.load(
 
 ## 17. Best YouTube Playlists
 
-> All URLs verified as active Flutter learning channels. In case any link breaks, search the channel name.
+> 🎯 Each playlist is mapped to the roadmap section(s) it covers. Watch the playlist alongside that section.
 
-### 10+ Essential Channels
+### Top YouTube Channels
 
-| # | Channel Name | Key Playlist | URL |
-|---|-------------|--------------|-----|
-| 1 | **Flutter (Official)** | Flutter Widget of the Week | https://youtube.com/playlist?list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2 |
-| 2 | **Flutter (Official)** | Flutter in Focus | https://youtube.com/playlist?list=PLjxrf2q8roU0Netg1wRqS0M4p3QASZqG1 |
-| 3 | **Flutter (Official)** | Flutter Decode | https://youtube.com/playlist?list=PLjxrf2q8roU3icxBXbR3mp5fM6K0JipAc |
-| 4 | **Fireship** | Flutter Firebase | https://youtube.com/playlist?list=PL0vfts4VzfNixQT9mJyrQZ3p4gM12jE5i |
-| 5 | **The Net Ninja** | Flutter Tutorial for Beginners | https://youtube.com/playlist?list=PL4cUxeGkcC9jLYyp2Aoh6hcWIVFDZhi1J |
-| 6 | **The Net Ninja** | Flutter State Management (Riverpod) | https://youtube.com/playlist?list=PL4cUxeGkcC9gjxL2V4VEVhOabN3C6sKOk |
-| 7 | **Vandad Nahavandipoor** | Flutter Tutorials | https://youtube.com/playlist?list=PL6yRaaP0WPkVTOeN108RZAGet5n2MlQb- |
-| 8 | **Robert Brunhage** | Riverpod 2.0 | https://youtube.com/playlist?list=PLnBvgoOXZNCOiVH4xMV-DAC2kmFYvTcBy |
-| 9 | **Rivaan Ranawat** | Flutter Tutorials | https://youtube.com/playlist?list=PLMcxgeGEZutAHbgFn3vvBQ5hF6Yh-B2Vq |
-| 10 | **Code With Andrea** | Flutter State Management Guide | https://youtube.com/playlist?list=PLNQvYATPbpvIINHL7tozmck66o8eKf5l9 |
-| 11 | **Flutterly** | Flutter Animations | https://youtube.com/playlist?list=PLslGZnQoQ4E5PM9VUpK1Jq4T_fSdkA6jf |
-| 12 | **Tensor Programming** | Flutter & Dart Tutorials | https://youtube.com/playlist?list=PLJbE2Yu2zumC1BV50bXS-LXjVQtZy-MJh |
-| 13 | **Mitch Koko** | Flutter Animations & UI | https://youtube.com/@mitchkoko |
-| 14 | **Reso Coder** | Clean Architecture with Flutter | https://youtube.com/playlist?list=PLB6lc7nQ1n4jSBMK2c1EzFT8_7PJfM3Kv |
-| 15 | **HeyFlutter** | Flutter Packages & Tips | https://youtube.com/@HeyFlutter |
-| 16 | **FlutterDevs** | Complete Flutter Tutorials | https://youtube.com/@flutterdevs |
-| 17 | **dbestech** | Flutter Full Apps | https://youtube.com/playlist?list=PLFyjjoCMAPtxnN2vWNkYRWoRpv9F3JvLm |
-| 18 | **Santos Enoque** | Flutter & Riverpod | https://youtube.com/@SantosEnoque |
-| 19 | **Abdul Aziz Ahwan** | Flutter Production Tips | https://youtube.com/@AbdulAzizAhwan |
-| 20 | **Retro Studio** | Flutter UI Challenges | https://youtube.com/@retrostudio |
+| Channel | URL | Focus | Covers Section(s) |
+|---------|-----|-------|-------------------|
+| Flutter (Official) | https://youtube.com/@flutterdev | Official Flutter content | 4, 5, 9, 11, 12 |
+| The Net Ninja | https://youtube.com/@NetNinja | Beginner to advanced Flutter | 3, 4, 6 |
+| Vandad Nahavandipoor | https://youtube.com/@VandadNahavandipoor | Deep-dive Flutter & Dart | 3, 4, 10 |
+| Fireship | https://youtube.com/@fireship | High-density Flutter concepts | 9, 13, 14 |
+| Code With Andrea | https://youtube.com/@CodeWithAndrea | State management, architecture | 6, 10 |
+| Reso Coder | https://youtube.com/@ResoCoder | Clean Architecture, TDD | 10, 12 |
+| Rivaan Ranawat | https://youtube.com/@RivaanRanawat | Full Flutter apps | 4, 15 |
+| Mitch Koko | https://youtube.com/@mitchkoko | Animations & UI design | 4, 11 |
+| Johannes Milke | https://youtube.com/@JohannesMilke | Flutter tips & packages | 4, 8, 9 |
+| Tadas Petra | https://youtube.com/@tadaspetra | Bloc & state management | 6 |
+| Marcus Ng | https://youtube.com/@marcusng | Firebase & Flutter | 9 |
+| Widget Wisdom | https://youtube.com/@WidgetWisdom | Flutter UI & animations | 4, 11 |
+| Flutterly | https://youtube.com/@Flutterly | Animations & widgets | 4, 11 |
+| HeyFlutter | https://youtube.com/@HeyFlutter | Packages & tips | 3, 4 |
+| dbestech | https://youtube.com/@dbestech | Full-stack Flutter apps | 7, 9, 15 |
+| Retro Studio | https://youtube.com/@retrostudio | UI challenges & design | 4, 11 |
+| FlutterDevs | https://youtube.com/@flutterdevs | Complete Flutter tutorials | 3, 4, 15 |
+
+### Playlists by Topic
+
+| # | Channel | Playlist | Covers Section | URL |
+|---|---------|----------|----------------|-----|
+| 1 | Flutter (Official) | Widget of the Week | 4 | https://youtube.com/playlist?list=PLjxrf2q8roU2HdJQDjJzOeO6J3FoFLWr2 |
+| 2 | Flutter (Official) | Flutter in Focus | 4 | https://youtube.com/playlist?list=PLjxrf2q8roU0Netg1wRqS0M4p3QASZqG1 |
+| 3 | Flutter (Official) | Flutter Decode | 4, 10 | https://youtube.com/playlist?list=PLjxrf2q8roU3icxBXbR3mp5fM6K0JipAc |
+| 4 | Flutter (Official) | Flutter Navigation | 5 | https://youtube.com/playlist?list=PLjxrf2q8roU3M0C1gX5Z-UiG4qWzXlXdP |
+| 5 | Flutter (Official) | Flutter Testing | 12 | https://youtube.com/playlist?list=PLjxrf2q8roU3PjTZ2sDl3kY2lTQm2fLkN |
+| 6 | Fireship | Flutter Firebase | 9 | https://youtube.com/playlist?list=PL0vfts4VzfNixQT9mJyrQZ3p4gM12jE5i |
+| 7 | The Net Ninja | Flutter Tutorial for Beginners | 3, 4 | https://youtube.com/playlist?list=PL4cUxeGkcC9jLYyp2Aoh6hcWIVFDZhi1J |
+| 8 | The Net Ninja | State Management (Riverpod) | 6 | https://youtube.com/playlist?list=PL4cUxeGkcC9gjxL2V4VEVhOabN3C6sKOk |
+| 9 | Vandad Nahavandipoor | Flutter Tutorials | 3, 4, 5 | https://youtube.com/playlist?list=PL6yRaaP0WPkVTOeN108RZAGet5n2MlQb- |
+| 10 | Robert Brunhage | Riverpod 2.0 | 6 | https://youtube.com/playlist?list=PLnBvgoOXZNCOiVH4xMV-DAC2kmFYvTcBy |
+| 11 | Rivaan Ranawat | Flutter Tutorials | 4, 15 | https://youtube.com/playlist?list=PLMcxgeGEZutAHbgFn3vvBQ5hF6Yh-B2Vq |
+| 12 | Code With Andrea | State Management Guide | 6 | https://youtube.com/playlist?list=PLNQvYATPbpvIINHL7tozmck66o8eKf5l9 |
+| 13 | Flutterly | Flutter Animations | 11 | https://youtube.com/playlist?list=PLslGZnQoQ4E5PM9VUpK1Jq4T_fSdkA6jf |
+| 14 | Reso Coder | Clean Architecture with Flutter | 10 | https://youtube.com/playlist?list=PLB6lc7nQ1n4jSBMK2c1EzFT8_7PJfM3Kv |
+| 15 | dbestech | Flutter Full Apps | 7, 9, 15 | https://youtube.com/playlist?list=PLFyjjoCMAPtxnN2vWNkYRWoRpv9F3JvLm |
+| 16 | Johannes Milke | Flutter Tips & Tricks | 4, 8 | https://youtube.com/@JohannesMilke |
+| 17 | Tadas Petra | Flutter Bloc | 6 | https://youtube.com/@tadaspetra |
+| 18 | Marcus Ng | Flutter Firebase | 9 | https://youtube.com/@marcusng |
+| 19 | freeCodeCamp | Flutter Full Course | 3, 4 | https://youtube.com/watch?v=VPvVD8t02U8 |
+| 20 | Dart (Official) | Dart Language Tutorials | 3 | https://youtube.com/playlist?list=PLjxrf2q8roU1fzIqUx1Jj3zY6J9Wv2kNz |
 
 > 💡 **Pro tip:** Watch at 1.25x–1.5x speed. Pause and code along. Do NOT just binge-watch — build each project yourself.
 

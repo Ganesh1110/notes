@@ -1130,49 +1130,72 @@
 
 ## 19. Best YouTube Channels
 
-| Channel | URL | Focus |
-|---------|-----|-------|
-| Andrej Karpathy | [youtube.com/@AndrejKarpathy](https://youtube.com/@AndrejKarpathy) | Neural networks, LLMs |
-| 3Blue1Brown | [youtube.com/@3blue1brown](https://youtube.com/@3blue1brown) | Math intuition |
-| StatQuest | [youtube.com/@statquest](https://youtube.com/@statquest) | Statistics & ML |
-| sentdex | [youtube.com/@sentdex](https://youtube.com/@sentdex) | Python, ML, finance |
-| DeepLearning.AI | [youtube.com/@Deeplearningai](https://youtube.com/@Deeplearningai) | AI courses & news |
-| Stanford Online | [youtube.com/@stanfordonline](https://youtube.com/@stanfordonline) | Stanford lectures |
-| MIT OpenCourseWare | [youtube.com/@mitocw](https://youtube.com/@mitocw) | MIT lectures |
-| Yannic Kilcher | [youtube.com/@YannicKilcher](https://youtube.com/@YannicKilcher) | ML paper reviews |
-| Patrick Loeber | [youtube.com/@patloeber](https://youtube.com/@patloeber) | Python, ML, PyTorch |
-| Nicholas Renotte | [youtube.com/@nicholasrenotte](https://youtube.com/@nicholasrenotte) | AI projects |
-| Sam Witteveen | [youtube.com/@samwitteveenai](https://youtube.com/@samwitteveenai) | LangChain, RAG, agents |
-| TechWithTim | [youtube.com/@TechWithTim](https://youtube.com/@TechWithTim) | Python, AI projects |
-| James Briggs | [youtube.com/@jamesbriggs](https://youtube.com/@jamesbriggs) | RAG, vector databases |
-| AssemblyAI | [youtube.com/@AssemblyAI](https://youtube.com/@AssemblyAI) | ML, NLP, speech |
-| The AI Engineer | [youtube.com/@TheAIEngineer](https://youtube.com/@TheAIEngineer) | LLMs, agents, tools |
-| NeetCode | [youtube.com/@NeetCodeIO](https://youtube.com/@NeetCodeIO) | DSA, interview prep |
-| FreeCodeCamp | [youtube.com/@freecodecamp](https://youtube.com/@freecodecamp) | Full courses |
-| AI Jason | [youtube.com/@AIJason](https://youtube.com/@AIJason) | AI agents, LangChain |
-| Wes Roth | [youtube.com/@WesRoth](https://youtube.com/@WesRoth) | AI news & deep dives |
-| Elliot Arledge | [youtube.com/@elliotarledge](https://youtube.com/@elliotarledge) | ML tutorials |
+> 📺 Watch alongside each roadmap section. Channels are tagged with which section(s) they support.
+
+| Channel | URL | Focus | Best For Section |
+|---------|-----|-------|-----------------|
+| Andrej Karpathy | [youtube.com/@AndrejKarpathy](https://youtube.com/@AndrejKarpathy) | Neural networks, LLMs | 6, 8 |
+| 3Blue1Brown | [youtube.com/@3blue1brown](https://youtube.com/@3blue1brown) | Math intuition | 3, 5 |
+| StatQuest | [youtube.com/@statquest](https://youtube.com/@statquest) | Statistics & ML | 4, 5 |
+| sentdex | [youtube.com/@sentdex](https://youtube.com/@sentdex) | Python, ML, finance | 2, 4, 5 |
+| DeepLearning.AI | [youtube.com/@Deeplearningai](https://youtube.com/@Deeplearningai) | AI courses & news | 5, 6, 7, 8 |
+| Stanford Online | [youtube.com/@stanfordonline](https://youtube.com/@stanfordonline) | Stanford lectures | 5, 6, 8 |
+| MIT OpenCourseWare | [youtube.com/@mitocw](https://youtube.com/@mitocw) | MIT lectures | 5, 6, 14 |
+| Yannic Kilcher | [youtube.com/@YannicKilcher](https://youtube.com/@YannicKilcher) | ML paper reviews | 5, 6, 7, 8 |
+| Patrick Loeber | [youtube.com/@patloeber](https://youtube.com/@patloeber) | Python, ML, PyTorch | 2, 6 |
+| Nicholas Renotte | [youtube.com/@nicholasrenotte](https://youtube.com/@nicholasrenotte) | AI projects | 7, 15 |
+| Sam Witteveen | [youtube.com/@samwitteveenai](https://youtube.com/@samwitteveenai) | LangChain, RAG, agents | 8, 12, 13 |
+| TechWithTim | [youtube.com/@TechWithTim](https://youtube.com/@TechWithTim) | Python, AI projects | 2, 7, 15 |
+| James Briggs | [youtube.com/@jamesbriggs](https://youtube.com/@jamesbriggs) | RAG, vector databases | 10, 11, 12 |
+| AssemblyAI | [youtube.com/@AssemblyAI](https://youtube.com/@AssemblyAI) | ML, NLP, speech | 5, 8 |
+| The AI Engineer | [youtube.com/@TheAIEngineer](https://youtube.com/@TheAIEngineer) | LLMs, agents, tools | 8, 13 |
+| NeetCode | [youtube.com/@NeetCodeIO](https://youtube.com/@NeetCodeIO) | DSA, interview prep | 3, 24 |
+| FreeCodeCamp | [youtube.com/@freecodecamp](https://youtube.com/@freecodecamp) | Full courses | All sections |
+| AI Jason | [youtube.com/@AIJason](https://youtube.com/@AIJason) | AI agents, LangChain | 12, 13 |
+| Wes Roth | [youtube.com/@WesRoth](https://youtube.com/@WesRoth) | AI news & deep dives | 7, 8 |
+| Elliot Arledge | [youtube.com/@elliotarledge](https://youtube.com/@elliotarledge) | ML tutorials | 2, 5, 6 |
+| **Two Minute Papers** | [youtube.com/@TwoMinutePapers](https://youtube.com/@TwoMinutePapers) | AI research simplified | 6, 7, 8 |
+| **AI Explained** | [youtube.com/@aiexplained-official](https://youtube.com/@aiexplained-official) | LLM news, deep dives | 7, 8, 13 |
+| **CodeEmporium** | [youtube.com/@CodeEmporium](https://youtube.com/@CodeEmporium) | ML architecture, transformers | 5, 6, 8 |
+| **DataTalksClub** | [youtube.com/@DataTalksClub](https://youtube.com/@DataTalksClub) | MLOps, data engineering | 14 |
+| **NeuralNine** | [youtube.com/@NeuralNine](https://youtube.com/@NeuralNine) | Python, ML algorithms | 2, 5 |
+| **DeepFindr** | [youtube.com/@deepfindr](https://youtube.com/@deepfindr) | RAG, vector DBs, agents | 10, 11, 12, 13 |
+| **AI Makerspace** | [youtube.com/@AI-Makerspace](https://youtube.com/@AI-Makerspace) | LLM engineering, fine-tuning | 7, 8 |
+| **Hugging Face** | [youtube.com/@HuggingFace](https://youtube.com/@HuggingFace) | HF ecosystem, transformers | 8, 10, 13 |
+| **LangChain** | [youtube.com/@LangChain](https://youtube.com/@LangChain) | Official LangChain tutorials | 12, 13 |
+| **Pinecone** | [youtube.com/@Pinecone](https://youtube.com/@Pinecone) | Vector databases, embeddings | 10, 11 |
 
 ---
 
 ## 20. Best Playlists
 
-| Playlist | Creator | Videos |
-|----------|---------|--------|
-| [Deep Learning Lectures (CS230)](https://www.youtube.com/playlist?list=PLoROMvodv4rOABXSygHT1M9Iajzn1LbBZ) | Stanford | 30+ |
-| [Neural Networks (3Blue1Brown)](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | 3Blue1Brown | 5 |
-| [Machine Learning (StatQuest)](https://www.youtube.com/playlist?list=PLblh5JKOoLUIxGDQs4LFFD--41Vzf-ME1) | StatQuest | 150+ |
-| [Reinforcement Learning (David Silver)](https://www.youtube.com/playlist?list=PLqYmG7hTraZBiGX2eD8gMEtNxR0q7l7_H) | DeepMind | 10 |
-| [Natural Language Processing (CS224n)](https://www.youtube.com/playlist?list=PLoROMvodv4rMFqRtEee6uAMTdzWnY1LAU) | Stanford | 20+ |
-| [Deep Learning (CS231n)](https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv) | Stanford | 16 |
-| [Practical Deep Learning for Coders](https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpL1kY3v4GdE6Q3cJ) | fast.ai | 10 |
-| [Hugging Face Course](https://www.youtube.com/playlist?list=PLo2EIpI_JMQtNqnGepQo0Uo0fCqKLM-YI) | Hugging Face | 15+ |
-| [Advanced Deep Learning (UvA)](https://www.youtube.com/playlist?list=PLIXJk2Tjhd2gl7dIj1ptQsF7H1dC5E7RY) | UvA | 15 |
-| [LangChain & LangGraph](https://www.youtube.com/playlist?list=PLq31zO2fT-qGx0Ei8XDS3aUGV5a9x4R1T) | Sam Witteveen | 60+ |
-| [MLOps Course](https://www.youtube.com/playlist?list=PL3MmuxUbc_hIUISdmrCH3QHX8J3vOX7Kz) | DataTalksClub | 20+ |
-| [AI Agents Course](https://www.youtube.com/playlist?list=PLlrxD0HtieHgz5Vc0Mh3Oge3FmkCjS5_v) | Hugging Face | 10+ |
-| [LLM Engineering Course](https://www.youtube.com/playlist?list=PL2c0dSG3_41XqIWqhQSqoaxnAHlq9wFAh) | AI Makerspace | 20+ |
-| [MIT 6.S191](https://www.youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI) | MIT | 10+ |
+> 🎯 Each playlist is mapped to the roadmap section(s) it covers. Watch the playlist alongside that section.
+
+| Playlist | Creator | Videos | Covers Section(s) |
+|----------|---------|--------|-------------------|
+| [Deep Learning Lectures (CS230)](https://www.youtube.com/playlist?list=PLoROMvodv4rOABXSygHT1M9Iajzn1LbBZ) | Stanford | 30+ | 6 |
+| [Neural Networks (3Blue1Brown)](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) | 3Blue1Brown | 5 | 5, 6 |
+| [Machine Learning (StatQuest)](https://www.youtube.com/playlist?list=PLblh5JKOoLUIxGDQs4LFFD--41Vzf-ME1) | StatQuest | 150+ | 5 |
+| [Reinforcement Learning (David Silver)](https://www.youtube.com/playlist?list=PLqYmG7hTraZBiGX2eD8gMEtNxR0q7l7_H) | DeepMind | 10 | 5 |
+| [Natural Language Processing (CS224n)](https://www.youtube.com/playlist?list=PLoROMvodv4rMFqRtEee6uAMTdzWnY1LAU) | Stanford | 20+ | 8 |
+| [Deep Learning (CS231n)](https://www.youtube.com/playlist?list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv) | Stanford | 16 | 6 |
+| [Practical Deep Learning for Coders](https://www.youtube.com/playlist?list=PLfYUBJiXbdtRUvTUYpL1kY3v4GdE6Q3cJ) | fast.ai | 10 | 6 |
+| [Hugging Face Course](https://www.youtube.com/playlist?list=PLo2EIpI_JMQtNqnGepQo0Uo0fCqKLM-YI) | Hugging Face | 15+ | 8, 10 |
+| [Advanced Deep Learning (UvA)](https://www.youtube.com/playlist?list=PLIXJk2Tjhd2gl7dIj1ptQsF7H1dC5E7RY) | UvA | 15 | 6 |
+| [LangChain & LangGraph](https://www.youtube.com/playlist?list=PLq31zO2fT-qGx0Ei8XDS3aUGV5a9x4R1T) | Sam Witteveen | 60+ | 12, 13 |
+| [MLOps Course](https://www.youtube.com/playlist?list=PL3MmuxUbc_hIUISdmrCH3QHX8J3vOX7Kz) | DataTalksClub | 20+ | 14 |
+| [AI Agents Course](https://www.youtube.com/playlist?list=PLlrxD0HtieHgz5Vc0Mh3Oge3FmkCjS5_v) | Hugging Face | 10+ | 13 |
+| [LLM Engineering Course](https://www.youtube.com/playlist?list=PL2c0dSG3_41XqIWqhQSqoaxnAHlq9wFAh) | AI Makerspace | 20+ | 8 |
+| [MIT 6.S191](https://www.youtube.com/playlist?list=PLtBw6njQRU-rwp5__7C0oIVt26ZgjG9NI) | MIT | 10+ | 6 |
+| [Python for Everybody](https://www.youtube.com/playlist?list=PLlRFEj9H3Oj7Bp8-DfGpfAfDBiblRfl5p) | freeCodeCamp | 40+ | 2 |
+| [Data Analysis with Python](https://www.youtube.com/playlist?list=PLoE6oM5B9VNgkO_i1Hf2IUf-2YflhFcDM) | freeCodeCamp | 15+ | 4 |
+| [ML with Scikit-Learn](https://www.youtube.com/playlist?list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v) | sentdex | 40+ | 5 |
+| [Deep Learning with PyTorch](https://www.youtube.com/playlist?list=PLhhyoLH6IjfxeoooqP9rhU3HJIAVAJ3Vz) | freeCodeCamp | 20+ | 6 |
+| [RAG from Scratch](https://www.youtube.com/playlist?list=PLfaIDFEXuae2LXbO1_P4J1E2jItU2fRjE) | LangChain | 15+ | 12 |
+| [Vector Databases](https://www.youtube.com/playlist?list=PLIE1kZ6PQ7Eo5LCEbYkx7IWKcz0H7RrV0) | Pinecone | 10+ | 10, 11 |
+| [Generative AI for Beginners](https://www.youtube.com/playlist?list=PLlrxD0HtieHj0pXUPmHhv3TgBGhAOBWPo) | Microsoft | 20+ | 7 |
+| [LLM Fine-Tuning](https://www.youtube.com/playlist?list=PL2c0dSG3_41UodRdbQB-nRfFoDoAErSMJ) | AI Makerspace | 15+ | 8 |
+| [DSA with Python](https://www.youtube.com/playlist?list=PLKYEe2WisBTFEr6laH5bR2J19j7sl5O8R) | NeetCode | 30+ | 3 |
 
 ---
 

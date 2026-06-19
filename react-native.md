@@ -3515,31 +3515,44 @@ function AnimatedListItem({ item, index }) {
 
 ## 18. Best YouTube Channels & Resources
 
+> 🎯 Each channel/playlist is mapped to the roadmap section(s) it covers. Watch alongside that section.
+
 ### 18.1 Advanced Channels
 
-| Channel | Focus | Why |
-|---------|-------|-----|
-| [notJust.dev](https://youtube.com/@notjustdev) | Full RN apps, architecture | "Become a Senior React Native Developer" series, real production apps |
-| [Fireship](https://youtube.com/@fireship) | High-density, 100s concepts | "React Native in 100 Seconds", New Architecture explainers |
-| [Simon Grimm](https://youtube.com/@SimonGrimmDev) | Expo deep dives | EAS Build, EAS Update, config plugins |
-| [Jack Herrington](https://youtube.com/@JackHerrington) | Performance, patterns | React Native performance profiling, advanced TypeScript (applicable in JS) |
-| [Lee Robinson](https://youtube.com/@leerob) | Monorepos, deployment | Turborepo tutorials, shipping strategies |
-| [Software Mansion](https://youtube.com/@SoftwareMansion) | Reanimated, Gesture Handler | Official library deep-dives from maintainers |
-| [React Conf](https://youtube.com/@reactconf) | Conference talks | Latest architecture talks, Fabric, JSI sessions |
-| [SwiftandTips](https://youtube.com/@SwiftandTips) | iOS native (Swift/Kotlin) | Native module development on Apple platforms |
-| [Philipp Lackner](https://youtube.com/@PhilippLackner) | Android native (Kotlin) | Android native module creation |
-| [Expo](https://youtube.com/@expo) | Official Expo channel | EAS, SDK releases, config plugin tutorials |
+| Channel | Focus | Why | Covers Section(s) |
+|---------|-------|-----|-------------------|
+| [notJust.dev](https://youtube.com/@notjustdev) | Full RN apps, architecture | "Become a Senior React Native Developer" series, real production apps | 15, 17 |
+| [Fireship](https://youtube.com/@fireship) | High-density, 100s concepts | "React Native in 100 Seconds", New Architecture explainers | 2, 11, 16 |
+| [Simon Grimm](https://youtube.com/@SimonGrimmDev) | Expo deep dives | EAS Build, EAS Update, config plugins | 3, 13, 14 |
+| [Jack Herrington](https://youtube.com/@JackHerrington) | Performance, patterns | React Native performance profiling, advanced TypeScript | 11, 15 |
+| [Lee Robinson](https://youtube.com/@leerob) | Monorepos, deployment | Turborepo tutorials, shipping strategies | 13, 15 |
+| [Software Mansion](https://youtube.com/@SoftwareMansion) | Reanimated, Gesture Handler | Official library deep-dives from maintainers | 11, 16 |
+| [React Conf](https://youtube.com/@reactconf) | Conference talks | Latest architecture talks, Fabric, JSI sessions | 2, 7, 11 |
+| [SwiftandTips](https://youtube.com/@SwiftandTips) | iOS native (Swift/Kotlin) | Native module development on Apple platforms | 7 |
+| [Philipp Lackner](https://youtube.com/@PhilippLackner) | Android native (Kotlin) | Android native module creation | 7 |
+| [Expo](https://youtube.com/@expo) | Official Expo channel | EAS, SDK releases, config plugin tutorials | 3, 13, 14 |
+| [William Candillon](https://youtube.com/@wcandillon) | Animations, Skia | "Can it be done in React Native?" series, custom animations | 11, 16 |
+| [Catalin Miron](https://youtube.com/@CatalinMiron) | Reanimated, animations | Advanced Reanimated, gesture handling, Skia | 11, 16 |
+| [React Native Radio](https://youtube.com/@ReactNativeRadio) | Podcast, deep dives | Architecture discussions, library reviews, best practices | 2, 5, 10, 15 |
+| [Bruno Lemos](https://youtube.com/@brunolemos) | Expo, RN tools | Expo modules, developer tooling | 3, 7 |
+| [Oscar Franco](https://youtube.com/@ospfranco) | Performance, architecture | React Native performance, native C++ | 2, 7, 11 |
 
 ### 18.2 Essential Playlists
 
-| Playlist | URL |
-|----------|-----|
-| notJust.dev — Become a Senior RN Dev | https://youtube.com/playlist?list=PLK0e69Lwj9-fkRi0g5qpn9O9QRmgsvvjW |
-| Software Mansion — Reanimated 3 | https://youtube.com/playlist?list=PLlH0XMSM80eFIOuDZF6AR11QxMlXkYiQx |
-| React Conf 2024 — New Architecture | https://youtube.com/playlist?list=PLOka8jP7n5PcSIDalE7vYR_RdFC7KsljN |
-| Expo — EAS Deep Dive | https://youtube.com/playlist?list=PLVgxK5R5M5FSq7WxWbY8C1IGoV_x7GqDy |
-| Lee Robinson — Turborepo | https://youtube.com/playlist?list=PL0vfts4VzfNjiWXmnFMS6YcOqTGJE8S5N |
-| Jack Herrington — Performance | https://youtube.com/playlist?list=PLN0s1z7QvYVy3q1SGHnOZz5EZQRZR_8y0 |
+| Playlist | Creator | Covers Section(s) | URL |
+|----------|---------|-------------------|-----|
+| Become a Senior RN Dev | notJust.dev | 15, 17 | https://youtube.com/playlist?list=PLK0e69Lwj9-fkRi0g5qpn9O9QRmgsvvjW |
+| Reanimated 3 | Software Mansion | 11, 16 | https://youtube.com/playlist?list=PLlH0XMSM80eFIOuDZF6AR11QxMlXkYiQx |
+| React Conf — New Architecture | React Conf | 2 | https://youtube.com/playlist?list=PLOka8jP7n5PcSIDalE7vYR_RdFC7KsljN |
+| EAS Deep Dive | Expo | 3, 13 | https://youtube.com/playlist?list=PLVgxK5R5M5FSq7WxWbY8C1IGoV_x7GqDy |
+| Turborepo | Lee Robinson | 15 | https://youtube.com/playlist?list=PL0vfts4VzfNjiWXmnFMS6YcOqTGJE8S5N |
+| Performance Profiling | Jack Herrington | 11 | https://youtube.com/playlist?list=PLN0s1z7QvYVy3q1SGHnOZz5EZQRZR_8y0 |
+| React Native Navigation v7 | React Navigation | 4 | https://youtube.com/playlist?list=PLQrFgGMLFkXU3B1sM1oFhKqM7s3gK4Y5x |
+| TanStack Query | TanStack | 6 | https://youtube.com/playlist?list=PLOka8jP7n5PcSIDalE7vYR_RdFC7KsljN |
+| Detox E2E Testing | Wix | 12 | https://youtube.com/playlist?list=PLZ4Eg2k1Qo0QzQsI2L0VL0g5yWb3l0s0n |
+| React Native Firebase | Firebase | 9 | https://youtube.com/playlist?list=PL0vfts4VzfNj2EMD1kxXkZ3YqZRsZSq3D |
+| Gesture Handler | Software Mansion | 11, 16 | https://youtube.com/playlist?list=PLlH0XMSM80eF8V5LgX8Hn3z0mX0m2hG5a |
+| React Native Skia | Shopify | 16 | https://youtube.com/playlist?list=PL8fQkGHgZ7TMsp4J5yGgFyMmVhZ2h0V3b |
 
 ### 18.3 Documentation & Tools
 
