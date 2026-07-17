@@ -43,6 +43,74 @@ Is the target hardware H100?
 
 ---
 
+## 1.5 Can I Quantize This Model? Pre-Quantization Checklist
+
+Before spending time on quantization, run through this checklist. It prevents wasted effort on models that cannot be quantized or deployed.
+
+### Gate 1: Model Access
+
+- [ ] Is the model **open-weight**? (Not a gated/proprietary API-only model like GPT-4, Claude)
+- [ ] Can you download the weights? (Accept license terms if gated — Llama, Gemma)
+- [ ] Do you have a Hugging Face token with access? (`huggingface-cli login`)
+- [ ] Is the **license compatible** with your use case? (See AI_MODEL_SELECTION.md §6)
+
+### Gate 2: Repository Completeness
+
+- [ ] Does the repo contain `config.json`? (Required — defines architecture)
+- [ ] Does the repo contain `tokenizer.json` or `tokenizer.model`? (Required for conversion)
+- [ ] Are the weights in `.safetensors` format? (Preferred over `pytorch_model.bin`)
+- [ ] Is there a `generation_config.json`? (Optional but recommended)
+- [ ] If multi-shard, is `model.safetensors.index.json` present?
+
+### Gate 3: Architecture Support
+
+- [ ] Is the `architectures` field in `config.json` supported by your target format?
+
+  | Format | Check |
+  |--------|-------|
+  | GGUF (llama.cpp) | `python convert_hf_to_gguf.py --help` lists supported archs |
+  | AWQ | Check autoawq docs / test with `autoawq` |
+  | GPTQ | Generally supports all HF architectures with `transformers` |
+  | EXL2 | Supports Llama, Mistral, Qwen, Gemma, Phi architectures |
+
+- [ ] If AWQ/GPTQ: does the model have `trust_remote_code=True` requirements?
+- [ ] If GGUF: is the architecture in `convert_hf_to_gguf.py`'s model registry?
+
+### Gate 4: Runtime Support
+
+- [ ] Does the target runtime support the format + architecture combination?
+
+  | Runtime | Check |
+  |---------|-------|
+  | Ollama | Has the model been tested? Check ollama.com/library |
+  | llama.cpp | `llama-cli -m model.gguf` runs without errors |
+  | vLLM | Check vLLM supported models list |
+  | TGI | Check TGI supported architectures |
+
+- [ ] Is the runtime at a version that handles this model? (New models need new runtimes)
+
+### Gate 5: Hardware Readiness
+
+- [ ] Do you have **2x the model FP16 size** in free disk space?
+- [ ] For GGUF: do you have **enough RAM** to load the FP16 model during conversion?
+- [ ] For AWQ/GPTQ: do you have a **CUDA GPU with 8GB+ VRAM** (7B) or **280GB+ system RAM** (70B)?
+- [ ] For EXL2: do you have an **NVIDIA GPU** (no AMD/Intel support)?
+- [ ] Is there enough space for the output quantized file(s)?
+
+### Quick-Fail Conditions
+
+If any of these are true, stop and reassess:
+
+| Condition | Action |
+|-----------|--------|
+| API-only model (GPT-4o, Claude, Gemini) | Cannot quantize; use API directly |
+| Missing `config.json` | Not a valid model repo |
+| Unknown architecture + very new model | Wait 2-4 weeks for tooling support |
+| No GPU + need AWQ/GPTQ/EXL2 | Switch to GGUF (CPU-friendly) |
+| Insufficient RAM for conversion | Use cloud instance or pre-quantized model |
+
+---
+
 ## 2. Prerequisites
 
 ### Software
@@ -162,7 +230,142 @@ Smaller group sizes produce higher quality quantizations at the same bit-width b
 
 ---
 
+## 3.5 Quick Quantization Decision Trees
+
+Use these flowcharts to choose the right quantization level quickly.
+
+### Decision Tree A: By Deployment Target
+
+```
+What is the deployment target?
+  |
+  ├── Ollama / llama.cpp / LM Studio
+  |     └── Use GGUF → see Tree B
+  |
+  ├── vLLM / TGI (production serving)
+  |     └── Use AWQ or GPTQ
+  |           ├── Need max throughput? → AWQ (Marlin kernel)
+  |           └── Need bit-width flexibility? → GPTQ (2/3/4/8-bit)
+  |
+  ├── Single GPU, max speed
+  |     └── Use EXL2 (ExLlamaV2 is fastest for batch=1)
+  |
+  ├── Fine-tuning (QLoRA)
+  |     └── Use bitsandbytes NF4 (load_in_4bit)
+  |
+  └── H100 data center
+        └── Use FP8 (TensorRT-LLM)
+```
+
+### Decision Tree B: GGUF Quant Selection
+
+```
+                          ┌────────────────────────────┐
+                          │  Is quality critical?       │
+                          │  (code gen, factual tasks)  │
+                          └────────────┬───────────────┘
+                                       │
+                          ┌────────────┴────────────┐
+                         Yes                        No
+                          │                         │
+                    ┌─────┴─────┐            ┌──────┴──────┐
+                    │ Q8_0      │            │ Q5_K_M      │
+                    │ (near     │            │ (best       │
+                    │ lossless) │            │ balance)    │
+                    └─────┬─────┘            └──────┬──────┘
+                          │                        │
+                    Do you have enough       Do you have enough
+                    VRAM for Q8_0?           VRAM for Q5_K_M?
+                          │                        │
+                    ┌─────┴─────┐            ┌──────┴──────┐
+                   Yes          No          Yes            No
+                    │           │            │             │
+                    │     ┌─────┴─────┐      │       ┌─────┴─────┐
+                    │     │ Q6_K      │      │       │ Q4_K_M    │
+                    │     │ (excellent│      │       │ (default  │
+                    │     │ quality)  │      │       │ recommend)│
+                    │     └─────┬─────┘      │       └─────┬─────┘
+                    │           │            │             │
+                    │     Still too big?     │       Still too big?
+                    │           │            │             │
+                    │     ┌─────┴─────┐      │       ┌─────┴─────┐
+                    │     │ Q5_K_M    │      │       │ Q3_K_M    │
+                    │     │ or Q4_K_M │      │       │ or Q2_K   │
+                    │     └───────────┘      │       └───────────┘
+                    │                        │
+               Use Q8_0                  Use Q5_K_M
+```
+
+### Decision Tree C: By Available VRAM (GGUF, 8K context)
+
+```
+VRAM Available → Recommended Quant
+  |
+  ├── < 4 GB  → 3B model @ Q4_K_M or Q5_K_M
+  |              (Llama 3.2 3B, Phi-3 Mini, Qwen 2.5 3B)
+  |
+  ├── 4-8 GB  → 7-8B model @ Q4_K_M
+  |              (Llama 3.1 8B, Mistral 7B, Qwen 2.5 7B)
+  |
+  ├── 8-12 GB → 7-8B model @ Q5_K_M or Q6_K
+  |              14B model @ Q4_K_M
+  |
+  ├── 12-16 GB → 14-20B model @ Q4_K_M
+  |               Gemma 2 27B @ Q3_K_M
+  |
+  ├── 16-24 GB → 32B model @ Q4_K_M (sweet spot)
+  |               Qwen 2.5 32B, Llama 3.1 70B @ Q3_K_M
+  |
+  ├── 24-32 GB → 70B model @ Q4_K_M (fits!)
+  |               Llama 3.1 70B, Qwen 2.5 72B
+  |
+  ├── 32-48 GB → 70B @ Q5_K_M or Q6_K
+  |               405B @ Q2_K (extreme compression)
+  |
+  └── 48-80 GB → 70B @ Q8_0
+                  DeepSeek R1 @ Q4_K_M
+```
+
+### Decision Tree D: By Use Case
+
+```
+What is the primary use case?
+  |
+  ├── Chat / Conversation
+  |     └── Q5_K_M (quality) or Q4_K_M (memory)
+  |
+  ├── Code Generation
+  |     └── Q8_0 (precision matters for code)
+  |         or Q6_K if memory-constrained
+  |
+  ├── RAG / Document QA
+  |     └── Q5_K_M (need factual accuracy)
+  |         Use longer context, not higher quant
+  |
+  ├── Creative Writing
+  |     └── Q5_K_M or Q6_K (nuance matters)
+  |         Q4_K_M acceptable for drafts
+  |
+  ├── Classification / Simple Tasks
+  |     └── Q4_K_M or even Q3_K_M
+  |         Small models may suffice
+  |
+  ├── Batch Processing (offline)
+  |     └── Q4_K_M or Q5_K_M (speed less critical)
+  |
+  ├── Reasoning / Math
+  |     └── Q8_0 or Q6_K (numerical precision)
+  |         DeepSeek R1 benefits from higher quants
+  |
+  └── Fine-tuning base
+        └── Q8_0 or FP16 (keep maximum information)
+```
+
+---
+
 ## 4. GGUF Quantization (llama.cpp)
+
+> **⚠️ Critical Note**: Before starting, verify that `convert_hf_to_gguf.py` supports your model's architecture. This is **not** a universal converter — it only handles architectures explicitly implemented in llama.cpp. Check `config.json` → `architectures` field and compare against the table in AI_CONVERT_TO_GGUF.md §4.5. If the architecture is unknown, conversion will fail with `ValueError: Unknown model architecture` regardless of how you run it. Always update llama.cpp to the latest commit first.
 
 ### Step 1: Build llama.cpp
 

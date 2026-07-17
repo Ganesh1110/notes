@@ -205,6 +205,124 @@ Compare the output against the checksums provided in the model repository (often
 
 ---
 
+## 4.5 Architecture Detection (Before Conversion)
+
+Before attempting conversion, identify the model's architecture from `config.json`. This determines whether `convert_hf_to_gguf.py` can handle it.
+
+### Reading config.json
+
+Every Hugging Face model has a `config.json` in its root directory. The critical field is `architectures`:
+
+```json
+{
+  "architectures": ["LlamaForCausalLM"],
+  "model_type": "llama",
+  "num_hidden_layers": 32,
+  "hidden_size": 4096,
+  "num_attention_heads": 32,
+  "num_key_value_heads": 8
+}
+```
+
+### Architecture-to-Support Decision Tree
+
+```
+Read config.json → Check "architectures" field
+                             |
+        Is architecture in the support table below?
+                             |
+                     ┌───────┴───────┐
+                    Yes              No
+                     │               │
+             Can convert            Is it a variant of a supported arch?
+                                     │
+                              ┌──────┴──────┐
+                             Yes            No
+                              │              │
+                     Try conversion    Update llama.cpp
+                     (may work)       or wait for support
+```
+
+### Key Architecture Values
+
+| architectures[] Value | Model Family | Supported? | Notes |
+|-----------------------|-------------|------------|-------|
+| `LlamaForCausalLM` | Llama 3.x, CodeLlama | ✅ Yes | Most stable, fully tested |
+| `MistralForCausalLM` | Mistral 7B | ✅ Yes | Same arch as Llama with sliding window |
+| `MixtralForCausalLM` | Mixtral 8x7B, 8x22B | ✅ Yes | MoE variant |
+| `Qwen2ForCausalLM` | Qwen 2.5 | ✅ Yes | Handles 151k tokenizer |
+| `Qwen2MoeForCausalLM` | Qwen 2.5 110B | ✅ Yes | MoE variant |
+| `DeepseekV2ForCausalLM` | DeepSeek V2 | ✅ Yes | MLA attention |
+| `DeepseekV3ForCausalLM` | DeepSeek V3/R1 | ✅ Yes | MoE + MLA |
+| `GemmaForCausalLM` | Gemma 2B | ✅ Yes | |
+| `Gemma2ForCausalLM` | Gemma 2 9B/27B | ✅ Yes | |
+| `Phi3ForCausalLM` | Phi-3 mini/small/medium | ✅ Yes | |
+| `PhiForCausalLM` | Phi-1/2 | ✅ Yes | |
+| `PhiMoEForCausalLM` | Phi-3 MoE | ✅ Yes | |
+| `StableLmForCausalLM` | StableLM 2/Zephyr | ✅ Yes | |
+| `FalconForCausalLM` | Falcon 7B/40B/180B | ✅ Yes | |
+| `CohereForCausalLM` | Command-R/Command-R+ | ✅ Yes | |
+| `InternLM2ForCausalLM` | InternLM 2 | ✅ Yes | |
+| `DbrxForCausalLM` | DBRX 132B | ✅ Yes | MoE |
+| `GPT2LMHeadModel` | GPT-2 | ✅ Yes | Legacy |
+| `ExaoneForCausalLM` | EXAONE 3.0 | ⚠️ Check | Recent addition |
+| `NemotronForCausalLM` | Nemotron 4 | ⚠️ Check | May need latest build |
+| `OlmoForCausalLM` | OLMo | ✅ Yes | |
+| `JAISLMHeadModel` | Jais 30B | ✅ Yes | |
+| `MPTForCausalLM` | MPT 7B/30B | ✅ Yes | |
+| `OPTForCausalLM` | OPT 125M-66B | ✅ Yes | Legacy |
+| `BaichuanForCausalLM` | Baichuan 2 7B/13B | ✅ Yes | |
+| `XverseForCausalLM` | XVERSE 13B | ✅ Yes | |
+| `GLMForCausalLM`/`ChatGLMForCausalLM` | GLM-4/5 | ⚠️ Partial | Check build date |
+
+### What Happens If Architecture Is Unsupported
+
+You'll see:
+```
+ValueError: Unknown model architecture: 'FooForCausalLM'
+```
+
+**Solutions** (in order):
+1. `git pull && make -j` — update llama.cpp to latest (new architectures land frequently)
+2. Check the [llama.cpp issue tracker](https://github.com/ggerganov/llama.cpp/issues) for pending support
+3. Add support yourself by implementing a new model class in `llama.cpp/convert_hf_to_gguf.py`
+4. Wait for upstream support
+
+> **⚠️ Critical Note**: `convert_hf_to_gguf.py` is **not** a universal converter. It only works for architectures explicitly implemented in llama.cpp. Before planning a workflow, always verify the architecture is supported. Running conversion on an unsupported architecture wastes hours of download and compute time.
+
+### Automatic Architecture Check
+
+Run this before conversion to validate:
+
+```bash
+python -c "
+import json
+with open('config.json') as f:
+    cfg = json.load(f)
+arch = cfg.get('architectures', ['Unknown'])[0]
+print(f'Architecture: {arch}')
+# Basic validation
+known = ['LlamaForCausalLM', 'MistralForCausalLM', 'MixtralForCausalLM',
+         'Qwen2ForCausalLM', 'Qwen2MoeForCausalLM', 'DeepseekV2ForCausalLM',
+         'DeepseekV3ForCausalLM', 'GemmaForCausalLM', 'Gemma2ForCausalLM',
+         'Phi3ForCausalLM', 'PhiForCausalLM', 'PhiMoEForCausalLM',
+         'FalconForCausalLM', 'CohereForCausalLM', 'StableLmForCausalLM',
+         'InternLM2ForCausalLM', 'DbrxForCausalLM', 'GLMForCausalLM',
+         'ChatGLMForCausalLM', 'BaichuanForCausalLM', 'XverseForCausalLM',
+         'GPT2LMHeadModel', 'OlmoForCausalLM', 'JAISLMHeadModel',
+         'MPTForCausalLM', 'OPTForCausalLM']
+if arch in known:
+    print('✅ Supported architecture')
+else:
+    print('⚠️ Unknown architecture — verify llama.cpp supports this')
+    print('   Update llama.cpp or check for pending PRs')
+"
+```
+
+Run this from the model directory before spending time on full conversion.
+
+---
+
 ## 5. Conversion to GGUF
 
 The conversion process transforms Hugging Face model weights (stored as SafeTensors or PyTorch bin files) into the GGUF format.
