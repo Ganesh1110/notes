@@ -1,0 +1,115 @@
+# =============================================================================
+# Ollama Modelfile Template
+# =============================================================================
+#
+# Usage:
+#   1. Copy this template and fill in your values
+#   2. Run: ollama create my-model -f Modelfile
+#   3. Run: ollama run my-model
+#
+# Reference: https://github.com/ollama/ollama/blob/main/docs/modelfile.md
+# =============================================================================
+
+# --- Required: Path to GGUF model file (absolute path recommended) ----------
+FROM /path/to/model.gguf
+
+# --- Model Metadata ----------------------------------------------------------
+# Sets the template for chat completions (uses Go template syntax)
+# Important: Must match the model's expected chat format
+TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+
+{{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+
+{{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+
+{{ .Response }}<|eot_id|>"""
+
+# --- License (optional) ------------------------------------------------------
+LICENSE """
+MIT License
+Copyright (c) 2024
+"""
+
+# --- System Prompt -----------------------------------------------------------
+SYSTEM """You are a helpful, harmless, and honest AI assistant."""
+
+# --- Parameters: Generation --------------------------------------------------
+PARAMETER temperature 0.7         # (0.0-2.0) Lower = more deterministic, higher = more creative
+PARAMETER top_p 0.9               # (0.0-1.0) Nucleus sampling threshold
+PARAMETER top_k 40                # (0-100) Only sample from top K tokens (0 = disabled)
+PARAMETER min_p 0.05              # (0.0-1.0) Minimum probability for token to be considered
+
+# --- Parameters: Repetition Control ------------------------------------------
+PARAMETER repeat_penalty 1.1      # (1.0-2.0) Higher = less repetition
+PARAMETER repeat_last_n 64        # (0-N) Look back this many tokens for repetition (0 = all)
+PARAMETER frequency_penalty 0.0   # (0.0-2.0) Penalize frequent tokens
+PARAMETER presence_penalty 0.0    # (0.0-2.0) Penalize tokens that have appeared
+
+# --- Parameters: Advanced Sampling -------------------------------------------
+PARAMETER mirostat 0              # (0=disabled, 1=Mirostat, 2=Mirostat 2.0)
+PARAMETER mirostat_tau 5.0        # (0.0-10.0) Mirostat learning rate (lower = more focused)
+PARAMETER mirostat_eta 0.1        # (0.0-1.0) Mirostat entropy target
+PARAMETER tfs_z 1.0               # (0.0-1.0) Tail free sampling (1.0 = disabled)
+PARAMETER typical_p 1.0           # (0.0-1.0) Locally typical sampling (1.0 = disabled)
+
+# --- Parameters: Context & Performance ---------------------------------------
+PARAMETER context_length 8192     # (N) Context window size in tokens
+PARAMETER num_ctx 8192            # (Alias for context_length)
+PARAMETER num_gpu 99              # (0-N) Layers to offload to GPU (99 = all, 0 = CPU only)
+PARAMETER num_thread 8            # (1-N) Number of CPU threads
+PARAMETER num_keep 0              # (0-N) Number of tokens to keep from prompt
+PARAMETER seed 0                  # (0 = random, >0 = deterministic)
+
+# --- Parameters: Stop Tokens -------------------------------------------------
+# Stop generation when these tokens are produced
+PARAMETER stop "<|eot_id|>"
+PARAMETER stop "<|start_header_id|>"
+PARAMETER stop "<|end_header_id|>"
+
+# =============================================================================
+# Common Chat Templates
+# =============================================================================
+#
+# Llama 3 Instruct:
+#   TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+#
+# {{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+#
+# {{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+#
+# {{ .Response }}<|eot_id|>"""
+#
+# Mistral / Qwen 2.5 Instruct:
+#   TEMPLATE """{{ if .System }}<|im_start|>system
+# {{ .System }}<|im_end|>{{ end }}{{ if .Prompt }}<|im_start|>user
+# {{ .Prompt }}<|im_end|>{{ end }}<|im_start|>assistant
+# {{ .Response }}<|im_end|>"""
+#
+# Gemma 2 Instruct:
+#   TEMPLATE """{{ if .System }}<bos><start_of_turn>user
+# {{ .System }}{{ end }}{{ if .Prompt }}<start_of_turn>user
+# {{ .Prompt }}<end_of_turn>
+# <start_of_turn>model
+# {{ .Response }}<end_of_turn>"""
+#
+# DeepSeek:
+#   TEMPLATE """{{ if .System }}{{ .System }}{{ end }}{{ if .Prompt }}User: {{ .Prompt }}
+#
+# Assistant:{{ end }}{{ .Response }}"""
+#
+# =============================================================================
+# Example: Quick Start Modelfile
+# =============================================================================
+#
+# FROM ./models/llama-3.1-8b-q4_k_m.gguf
+# TEMPLATE """{{ if .System }}<|start_header_id|>system<|end_header_id|>
+#
+# {{ .System }}<|eot_id|>{{ end }}{{ if .Prompt }}<|start_header_id|>user<|end_header_id|>
+#
+# {{ .Prompt }}<|eot_id|>{{ end }}<|start_header_id|>assistant<|end_header_id|>
+#
+# {{ .Response }}<|eot_id|>"""
+# PARAMETER temperature 0.7
+# PARAMETER context_length 8192
+# PARAMETER num_gpu 99
+# SYSTEM """You are a helpful assistant."""
